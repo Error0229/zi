@@ -1,0 +1,879 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   墨韻 (Ink Resonance) - I-Ching Oracle Theme
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&family=Noto+Serif+SC:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   CSS Variables - The Five Elements Palette
+   ───────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Ink tones - 墨色 */
+  --ink-void: #0a0a0a;
+  --ink-deep: #0d0d0d;
+  --ink-dark: #1a1a1a;
+  --ink-medium: #2a2a2a;
+  --ink-light: #3a3a3a;
+  --ink-wash: #4a4a4a;
+
+  /* Paper tones - 宣纸 */
+  --paper-aged: #f5eee1;
+  --paper-warm: #e8dfd0;
+  --paper-cream: #d4c8b8;
+  --paper-shadow: #c4b8a8;
+
+  /* Cinnabar red - 朱砂 */
+  --cinnabar: #c41e3a;
+  --cinnabar-dark: #9a1830;
+  --cinnabar-glow: rgba(196, 30, 58, 0.3);
+
+  /* Gold - 金 */
+  --gold: #c9a227;
+  --gold-light: #dbb84d;
+  --gold-dark: #a68520;
+  --gold-glow: rgba(201, 162, 39, 0.2);
+
+  /* Jade - 玉 */
+  --jade: #1a6b52;
+  --jade-light: #2a8b6a;
+
+  /* Typography */
+  --font-display: 'Noto Serif SC', 'Cormorant Garamond', serif;
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-hexagram: 'Noto Sans Symbols 2', 'Segoe UI Symbol', 'Arial Unicode MS', monospace;
+
+  /* Spacing - based on 8px grid */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Borders */
+  --border-thin: 1px;
+  --border-medium: 2px;
+  --border-thick: 3px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-medium: 300ms ease;
+  --transition-slow: 500ms ease;
+  --transition-glacial: 1000ms ease;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Reset & Base Styles
+   ───────────────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--ink-void);
+  color: var(--paper-aged);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Background - Mystical Gradient with Subtle Pattern
+   ───────────────────────────────────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 162, 39, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(196, 30, 58, 0.02) 0%, transparent 40%),
+    radial-gradient(ellipse 50% 30% at 20% 80%, rgba(26, 107, 82, 0.02) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Subtle noise texture */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Scrollbar - Ink Scroll Style
+   ───────────────────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ink-dark);
+  border-left: 1px solid var(--ink-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--ink-wash) 0%, var(--ink-medium) 100%);
+  border-radius: 4px;
+  border: 1px solid var(--ink-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Typography
+   ───────────────────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Animations - Mystical Motion
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* Incense smoke rise */
+@keyframes smoke-rise {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) scaleX(1.2);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-40px) scaleX(0.8);
+    opacity: 0;
+  }
+}
+
+/* Gentle pulse like breathing */
+@keyframes breath {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+/* Ink drip effect */
+@keyframes ink-drip {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  100% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+/* Reveal from center */
+@keyframes reveal-center {
+  0% {
+    clip-path: inset(50% 50% 50% 50%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0% 0% 0% 0%);
+    opacity: 1;
+  }
+}
+
+/* Fade in up */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Shimmer effect for gold accents */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Spin for loading */
+@keyframes oracle-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Yin-Yang rotation */
+@keyframes yin-yang-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Gentle float */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Trigram line draw */
+@keyframes draw-line {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Utility Classes
+   ───────────────────────────────────────────────────────────────────────────── */
+.animate-breath {
+  animation: breath 4s ease-in-out infinite;
+}
+
+.animate-smoke {
+  animation: smoke-rise 3s ease-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 50%,
+    var(--gold-dark) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-reveal {
+  animation: reveal-center 0.8s ease-out forwards;
+}
+
+.animate-fade-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Oracle Panel (Card/Container)
+   ───────────────────────────────────────────────────────────────────────────── */
+.oracle-panel {
+  background: linear-gradient(
+    145deg,
+    rgba(26, 26, 26, 0.95) 0%,
+    rgba(13, 13, 13, 0.98) 100%
+  );
+  border: 1px solid var(--ink-light);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.oracle-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--gold-dark) 20%,
+    var(--gold) 50%,
+    var(--gold-dark) 80%,
+    transparent 100%
+  );
+  opacity: 0.6;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Trigram Decorations
+   ───────────────────────────────────────────────────────────────────────────── */
+.trigram-border {
+  position: relative;
+}
+
+.trigram-border::before,
+.trigram-border::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 3px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+.trigram-border::before {
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.trigram-border::after {
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Corner trigram marks */
+.trigram-corners::before {
+  content: '☰';
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  font-size: 14px;
+  color: var(--gold);
+  opacity: 0.3;
+}
+
+.trigram-corners::after {
+  content: '☷';
+  position: absolute;
+  bottom: var(--space-sm);
+  right: var(--space-sm);
+  font-size: 14px;
+  color: var(--gold);
+  opacity: 0.3;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Seal Button (朱印)
+   ───────────────────────────────────────────────────────────────────────────── */
+.seal-button {
+  position: relative;
+  background: transparent;
+  border: 2px solid var(--cinnabar);
+  color: var(--cinnabar);
+  padding: var(--space-sm) var(--space-lg);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all var(--transition-medium);
+  overflow: hidden;
+}
+
+.seal-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--cinnabar);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-medium);
+  z-index: -1;
+}
+
+.seal-button:hover {
+  color: var(--paper-aged);
+  box-shadow: 0 0 20px var(--cinnabar-glow);
+}
+
+.seal-button:hover::before {
+  transform: scaleX(1);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Oracle Slider
+   ───────────────────────────────────────────────────────────────────────────── */
+.oracle-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--ink-medium) 0%,
+    var(--ink-light) 100%
+  );
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.oracle-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    var(--gold-light) 0%,
+    var(--gold) 50%,
+    var(--gold-dark) 100%
+  );
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var(--ink-dark);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: all var(--transition-fast);
+}
+
+.oracle-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+
+.oracle-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    var(--gold-light) 0%,
+    var(--gold) 50%,
+    var(--gold-dark) 100%
+  );
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var(--ink-dark);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Oracle Toggle
+   ───────────────────────────────────────────────────────────────────────────── */
+.oracle-toggle {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  background: var(--ink-medium);
+  border: 1px solid var(--ink-light);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition-medium);
+}
+
+.oracle-toggle::before {
+  content: '☯';
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--paper-shadow);
+  background: var(--ink-light);
+  border-radius: 50%;
+  transition: all var(--transition-medium);
+}
+
+.oracle-toggle.active {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+  border-color: var(--gold);
+}
+
+.oracle-toggle.active::before {
+  left: calc(100% - 20px);
+  color: var(--ink-dark);
+  background: var(--paper-aged);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Hexagram Display Area
+   ───────────────────────────────────────────────────────────────────────────── */
+.hexagram-scroll {
+  background:
+    linear-gradient(180deg,
+      rgba(13, 13, 13, 1) 0%,
+      rgba(10, 10, 10, 1) 50%,
+      rgba(13, 13, 13, 1) 100%
+    );
+  border: 1px solid var(--ink-light);
+  border-radius: 4px;
+  position: relative;
+}
+
+/* Scroll edge shadows */
+.hexagram-scroll::before,
+.hexagram-scroll::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 40px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hexagram-scroll::before {
+  top: 0;
+  background: linear-gradient(180deg, rgba(13, 13, 13, 1) 0%, transparent 100%);
+}
+
+.hexagram-scroll::after {
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(13, 13, 13, 1) 0%, transparent 100%);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Loading Oracle
+   ───────────────────────────────────────────────────────────────────────────── */
+.oracle-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+}
+
+.oracle-loading-symbol {
+  font-size: 48px;
+  color: var(--gold);
+  animation: oracle-spin 3s linear infinite;
+  filter: drop-shadow(0 0 20px var(--gold-glow));
+}
+
+.oracle-loading-text {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--paper-shadow);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Progress Bar (Yin-Yang Style)
+   ───────────────────────────────────────────────────────────────────────────── */
+.oracle-progress {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: var(--ink-medium);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.oracle-progress-bar {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--gold-dark) 0%,
+    var(--gold) 50%,
+    var(--gold-light) 100%
+  );
+  border-radius: 3px;
+  transition: width 100ms linear;
+  position: relative;
+}
+
+.oracle-progress-bar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background: var(--gold-light);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Section Divider
+   ───────────────────────────────────────────────────────────────────────────── */
+.oracle-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  color: var(--ink-wash);
+}
+
+.oracle-divider::before,
+.oracle-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--ink-light) 50%,
+    transparent 100%
+  );
+}
+
+.oracle-divider-symbol {
+  font-size: 12px;
+  color: var(--gold);
+  opacity: 0.6;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Upload Zone
+   ───────────────────────────────────────────────────────────────────────────── */
+.upload-zone {
+  position: relative;
+  border: 2px dashed var(--ink-light);
+  border-radius: 4px;
+  padding: var(--space-2xl);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-medium);
+  background: rgba(26, 26, 26, 0.3);
+}
+
+.upload-zone:hover {
+  border-color: var(--gold);
+  background: rgba(201, 162, 39, 0.05);
+}
+
+.upload-zone.dragover {
+  border-color: var(--gold);
+  background: rgba(201, 162, 39, 0.1);
+  box-shadow: inset 0 0 30px var(--gold-glow);
+}
+
+.upload-zone-icon {
+  font-size: 48px;
+  color: var(--gold);
+  opacity: 0.5;
+  margin-bottom: var(--space-md);
+  transition: all var(--transition-medium);
+}
+
+.upload-zone:hover .upload-zone-icon {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Section Headers
+   ───────────────────────────────────────────────────────────────────────────── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-md);
+}
+
+.section-header-icon {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Select Dropdown
+   ───────────────────────────────────────────────────────────────────────────── */
+.oracle-select {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--ink-medium);
+  border: 1px solid var(--ink-light);
+  border-radius: 4px;
+  color: var(--paper-aged);
+  font-family: var(--font-body);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23c9a227' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.oracle-select:hover,
+.oracle-select:focus {
+  border-color: var(--gold);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--gold-glow);
+}
+
+.oracle-select option {
+  background: var(--ink-dark);
+  color: var(--paper-aged);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Icon Buttons
+   ───────────────────────────────────────────────────────────────────────────── */
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--ink-medium);
+  border: 1px solid var(--ink-light);
+  border-radius: 50%;
+  color: var(--paper-shadow);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.icon-button:hover {
+  background: var(--ink-light);
+  color: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 15px var(--gold-glow);
+}
+
+.icon-button.primary {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+  border-color: var(--gold);
+  color: var(--ink-dark);
+}
+
+.icon-button.primary:hover {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  box-shadow: 0 0 20px var(--gold-glow);
+}
+
+.icon-button.danger {
+  border-color: var(--cinnabar);
+  color: var(--cinnabar);
+}
+
+.icon-button.danger:hover {
+  background: var(--cinnabar);
+  color: var(--paper-aged);
+  box-shadow: 0 0 15px var(--cinnabar-glow);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Info Badge
+   ───────────────────────────────────────────────────────────────────────────── */
+.info-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  background: rgba(201, 162, 39, 0.1);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--gold);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component: Notification Toast
+   ───────────────────────────────────────────────────────────────────────────── */
+.oracle-toast {
+  position: fixed;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: var(--space-md) var(--space-xl);
+  background: var(--ink-dark);
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  color: var(--paper-aged);
+  font-family: var(--font-display);
+  font-size: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: all var(--transition-medium);
+  z-index: 1000;
+}
+
+.oracle-toast.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Responsive Adjustments
+   ───────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  :root {
+    --space-xl: 24px;
+    --space-2xl: 32px;
+    --space-3xl: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .oracle-panel {
+    border-radius: 0;
+  }
+
+  .section-header {
+    font-size: 14px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Print Styles
+   ───────────────────────────────────────────────────────────────────────────── */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  body::before,
+  body::after {
+    display: none;
+  }
+
+  .hexagram-scroll {
+    background: white;
+    border: 1px solid #ccc;
+  }
+}
