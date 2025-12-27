@@ -475,7 +475,7 @@ export const UploadZone: React.FC<UploadZoneProps> = ({
           color: 'var(--ink-wash)',
         }}
       >
-        JPG, PNG, WEBP
+        JPG, PNG, WEBP, GIF
       </p>
       <input
         type="file"
