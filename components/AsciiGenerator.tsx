@@ -83,6 +83,7 @@ export const AsciiGenerator: React.FC = () => {
   const outputRef = useRef<HTMLPreElement>(null);
   const animationRef = useRef<number | null>(null);
   const lastFrameTimeRef = useRef<number>(0);
+  const currentFrameRef = useRef<number>(0);
 
   // Initialize hexagrams sorted by density
   useEffect(() => {
@@ -327,24 +328,30 @@ export const AsciiGenerator: React.FC = () => {
     }
   }, [generateAscii, isGif]);
 
+  // Keep ref in sync with state
+  useEffect(() => {
+    currentFrameRef.current = currentFrame;
+  }, [currentFrame]);
+
   // GIF animation loop
   const animateGif = useCallback(() => {
     if (!isPlaying || !gifData || gifFrames.length === 0) return;
 
     const now = performance.now();
-    const frameDelay = gifData.frames[currentFrame]?.delay || 100;
+    const frameIndex = currentFrameRef.current;
+    // Use the delay from the current frame, default to 100ms if delay is 0 or missing
+    const frameDelay = gifData.frames[frameIndex]?.delay || 100;
 
     if (now - lastFrameTimeRef.current >= frameDelay) {
       lastFrameTimeRef.current = now;
-      setCurrentFrame((prev) => {
-        const next = (prev + 1) % gifFrames.length;
-        setAsciiArt(gifFrames[next]);
-        return next;
-      });
+      const next = (frameIndex + 1) % gifFrames.length;
+      currentFrameRef.current = next;
+      setCurrentFrame(next);
+      setAsciiArt(gifFrames[next]);
     }
 
     animationRef.current = requestAnimationFrame(animateGif);
-  }, [isPlaying, gifData, gifFrames, currentFrame]);
+  }, [isPlaying, gifData, gifFrames]);
 
   // Start/stop animation
   useEffect(() => {
@@ -378,6 +385,7 @@ export const AsciiGenerator: React.FC = () => {
   const handleStop = () => {
     setIsPlaying(false);
     setCurrentFrame(0);
+    currentFrameRef.current = 0;
     if (gifFrames.length > 0) {
       setAsciiArt(gifFrames[0]);
     }
@@ -387,6 +395,7 @@ export const AsciiGenerator: React.FC = () => {
     if (gifFrames.length === 0) return;
     const prev = (currentFrame - 1 + gifFrames.length) % gifFrames.length;
     setCurrentFrame(prev);
+    currentFrameRef.current = prev;
     setAsciiArt(gifFrames[prev]);
   };
 
@@ -394,6 +403,7 @@ export const AsciiGenerator: React.FC = () => {
     if (gifFrames.length === 0) return;
     const next = (currentFrame + 1) % gifFrames.length;
     setCurrentFrame(next);
+    currentFrameRef.current = next;
     setAsciiArt(gifFrames[next]);
   };
 

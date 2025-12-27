@@ -69,9 +69,13 @@ export async function parseGif(arrayBuffer: ArrayBuffer): Promise<ParsedGif> {
     // Capture the full composited frame
     const fullFrame = ctx.getImageData(0, 0, width, height);
 
+    // gifuct-js returns delay in centiseconds, convert to milliseconds
+    // If delay is 0 or very small, browsers typically use 100ms as default
+    const delayMs = frame.delay <= 1 ? 100 : frame.delay * 10;
+
     resultFrames.push({
       imageData: fullFrame,
-      delay: frame.delay * 10, // gifuct-js returns delay in centiseconds
+      delay: delayMs,
     });
 
     // Handle disposal method
