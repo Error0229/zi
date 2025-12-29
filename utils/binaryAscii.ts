@@ -31,7 +31,7 @@ export function generateImageAscii(
   contrast: number = 1.2,
   invert: boolean = false,
   brightness: number = 0,
-  verticalSampling: number = 0.5
+  verticalSampling: number = 1.0
 ): string {
   const { data, width: imgWidth, height: imgHeight } = imageData;
 
@@ -154,15 +154,84 @@ export function renderHexagramToImageData(
 }
 
 /**
- * Generate binary ASCII art of a hexagram symbol
- * The hexagram is rendered as ASCII using itself for bright areas
+ * Generate ASCII art of a hexagram's 6-line pattern
+ * @param hexagramSymbol - the hexagram Unicode character to use for filled areas
+ * @param lineTypes - array of 6 line types ('yang'|'yin'), index 0 = bottom line
+ * @param width - exact character width to match viewport
+ * @param height - exact character height to match viewport
  */
 export function generateHexagramAscii(
   hexagramSymbol: string,
-  width: number = 40
+  lineTypes: ('yang' | 'yin')[],
+  width: number,
+  height: number
 ): string {
-  const imageData = renderHexagramToImageData(hexagramSymbol);
-  return generateBinaryAscii(imageData, hexagramSymbol, width, 200);
+  const SPACE = '\u3000'; // Full-width space for correct spacing
+
+  // Calculate layout - 6 lines with gaps between them
+  const totalLines = 6;
+  const totalGaps = 5;
+  const lineHeight = Math.max(2, Math.floor(height / 10));
+  const gapHeight = Math.max(1, Math.floor(height / 20));
+  const contentHeight = totalLines * lineHeight + totalGaps * gapHeight;
+  const marginY = Math.floor((height - contentHeight) / 2);
+  const marginX = Math.floor(width * 0.2); // 20% margin on each side
+  const lineWidth = width - 2 * marginX;
+  const breakWidth = Math.max(3, Math.floor(lineWidth * 0.2)); // 20% break in middle for yin
+  const breakStart = Math.floor((lineWidth - breakWidth) / 2);
+
+  let ascii = '';
+
+  for (let y = 0; y < height; y++) {
+    let row = '';
+    const contentY = y - marginY;
+
+    // Determine which line (0-5) this row belongs to
+    // Lines are drawn top to bottom: line 5 (top) to line 0 (bottom)
+    let lineIndex = -1;
+    let isInLineRow = false;
+
+    if (contentY >= 0 && contentY < contentHeight) {
+      const lineSlotHeight = lineHeight + gapHeight;
+      const slot = Math.floor(contentY / lineSlotHeight);
+      const posInSlot = contentY % lineSlotHeight;
+
+      if (slot < 6 && posInSlot < lineHeight) {
+        // lineTypes array is passed pre-reversed: [0]=top line, [5]=bottom line
+        // slot 0 = top of screen, slot 5 = bottom of screen
+        // Direct mapping: slot N uses lineTypes[N]
+        lineIndex = slot;
+        isInLineRow = true;
+      }
+    }
+
+    for (let x = 0; x < width; x++) {
+      if (!isInLineRow || lineIndex < 0 || lineIndex >= 6) {
+        row += SPACE;
+        continue;
+      }
+
+      const contentX = x - marginX;
+      if (contentX < 0 || contentX >= lineWidth) {
+        row += SPACE;
+        continue;
+      }
+
+      const isYang = lineTypes[lineIndex] === 'yang';
+      const isInBreak = contentX >= breakStart && contentX < breakStart + breakWidth;
+
+      // Yang = solid line, Yin = broken line (gap in middle)
+      if (isYang || !isInBreak) {
+        row += hexagramSymbol;
+      } else {
+        row += SPACE;
+      }
+    }
+
+    ascii += row + '\n';
+  }
+
+  return ascii;
 }
 
 /**
@@ -189,40 +258,24 @@ export function generateChaosFrame(
 }
 
 /**
- * Interpolate between chaos and final state
- * Used for the convergence animation phase
+ * Simple random shuffle convergence - each character randomly settles into place
  * @param progress 0-1, where 1 is fully converged
  */
 export function generateConvergenceFrame(
   finalAscii: string,
   progress: number,
-  fromCenter: boolean = false
+  _fromCenter: boolean = false // kept for API compatibility but unused
 ): string {
   const lines = finalAscii.split('\n');
-  const height = lines.length;
-  const width = lines[0]?.length || 0;
-  const centerX = width / 2;
-  const centerY = height / 2;
-  const maxDist = Math.sqrt(centerX * centerX + centerY * centerY);
-
   const hexStart = 0x4DC0;
   const hexEnd = 0x4DFF;
 
-  return lines.map((line, y) => {
-    return line.split('').map((char, x) => {
-      // Calculate distance from center (normalized 0-1)
-      const dx = x - centerX;
-      const dy = y - centerY;
-      const dist = Math.sqrt(dx * dx + dy * dy) / maxDist;
-
-      // Invert if converging from edges (outside-in)
-      const threshold = fromCenter ? dist : 1 - dist;
-
-      // If progress has reached this point, show final char
-      if (progress >= threshold) {
+  return lines.map((line) => {
+    return line.split('').map((char) => {
+      // Each character has a random chance to show final state based on progress
+      if (Math.random() < progress) {
         return char;
       }
-
       // Otherwise show random hexagram
       const code = hexStart + Math.floor(Math.random() * (hexEnd - hexStart + 1));
       return String.fromCodePoint(code);
