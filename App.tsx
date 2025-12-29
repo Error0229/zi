@@ -138,7 +138,7 @@ export default function App() {
         style={{
           flex: 1,
           width: '100%',
-          maxWidth: mode === 'divination' ? '900px' : '1600px',
+          maxWidth: '1600px',
           margin: '0 auto',
           padding: '0 var(--space-lg) var(--space-2xl)',
         }}

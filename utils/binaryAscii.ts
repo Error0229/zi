@@ -29,14 +29,16 @@ export function generateImageAscii(
   sortedHexagrams: string[],
   width: number = 50,
   contrast: number = 1.2,
-  invert: boolean = false
+  invert: boolean = false,
+  brightness: number = 0,
+  verticalSampling: number = 0.5
 ): string {
   const { data, width: imgWidth, height: imgHeight } = imageData;
 
   // Calculate height maintaining aspect ratio
-  // Hexagram characters are roughly square, so we use 0.5 vertical scale
+  // Use verticalSampling to adjust for character aspect ratio
   const aspectRatio = imgHeight / imgWidth;
-  const height = Math.max(1, Math.floor(width * aspectRatio * 0.5));
+  const height = Math.max(1, Math.floor(width * aspectRatio * verticalSampling));
 
   const xStep = imgWidth / width;
   const yStep = imgHeight / height;
@@ -54,8 +56,12 @@ export function generateImageAscii(
       const g = data[idx + 1];
       const b = data[idx + 2];
 
-      // Grayscale with contrast
+      // Grayscale with contrast and brightness
       let gray = 0.299 * r + 0.587 * g + 0.114 * b;
+      // Apply brightness (-50 to 50 maps to -0.2 to 0.2)
+      gray = gray + brightness * 2.55;
+      gray = Math.max(0, Math.min(255, gray));
+      // Apply contrast
       const normalized = gray / 255 - 0.5;
       const contrasted = normalized * contrast + 0.5;
       gray = Math.max(0, Math.min(1, contrasted)) * 255;
