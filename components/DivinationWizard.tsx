@@ -65,6 +65,13 @@ export const DivinationWizard: React.FC = () => {
   const [toastMessage, setToastMessage] = useState('');
 
   const animationRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number>(0);
+  const resultRef = useRef(result);
+
+  // Keep resultRef in sync
+  useEffect(() => {
+    resultRef.current = result;
+  }, [result]);
 
   const showToast = (message: string) => {
     setToastMessage(message);
@@ -105,46 +112,48 @@ export const DivinationWizard: React.FC = () => {
   useEffect(() => {
     if (step !== 'divining') return;
 
-    let startTime = Date.now();
+    // Only set startTime once when animation begins
+    if (startTimeRef.current === 0) {
+      startTimeRef.current = Date.now();
+      // Start divination immediately
+      if (imageData) {
+        divine(imageData, method);
+      }
+    }
+
     const chaosDuration = 2000;
     const convergeDuration = 1000;
 
     const animate = () => {
-      const elapsed = Date.now() - startTime;
+      const elapsed = Date.now() - startTimeRef.current;
+      const currentResult = resultRef.current;
 
       if (elapsed < chaosDuration) {
         // Chaos phase
         setAnimationPhase('chaos');
         setAnimationFrame(generateChaosFrame(ASCII_WIDTH, ASCII_HEIGHT));
         setAnimationProgress(elapsed / chaosDuration);
-      } else if (elapsed < chaosDuration + convergeDuration) {
-        // Convergence phase
-        if (animationPhase !== 'converge' && result) {
-          setAnimationPhase('converge');
-          // Generate final ASCII
-          const finalAscii = generateHexagramAscii(result.primaryHexagram.symbol, ASCII_WIDTH);
-          setHexagramAscii(finalAscii);
-        }
-        if (result) {
-          const convergeProgress = (elapsed - chaosDuration) / convergeDuration;
-          setAnimationProgress(convergeProgress);
-          const finalAscii = generateHexagramAscii(result.primaryHexagram.symbol, ASCII_WIDTH);
-          setAnimationFrame(generateConvergenceFrame(finalAscii, convergeProgress, false));
-        }
-      } else {
+      } else if (elapsed < chaosDuration + convergeDuration && currentResult) {
+        // Convergence phase - only if result is ready
+        setAnimationPhase('converge');
+        const convergeProgress = (elapsed - chaosDuration) / convergeDuration;
+        setAnimationProgress(convergeProgress);
+        const finalAscii = generateHexagramAscii(currentResult.primaryHexagram.symbol, ASCII_WIDTH);
+        setHexagramAscii(finalAscii);
+        setAnimationFrame(generateConvergenceFrame(finalAscii, convergeProgress, false));
+      } else if (elapsed >= chaosDuration + convergeDuration && currentResult) {
         // Reveal phase - done
         setAnimationPhase('done');
+        startTimeRef.current = 0; // Reset for next time
         setStep('result');
         return;
+      } else if (elapsed >= chaosDuration && !currentResult) {
+        // Still waiting for result, keep showing chaos
+        setAnimationFrame(generateChaosFrame(ASCII_WIDTH, ASCII_HEIGHT));
       }
 
       animationRef.current = requestAnimationFrame(animate);
     };
-
-    // Start divination immediately
-    if (imageData) {
-      divine(imageData, method);
-    }
 
     animationRef.current = requestAnimationFrame(animate);
 
@@ -153,7 +162,7 @@ export const DivinationWizard: React.FC = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [step, imageData, method, divine, result, animationPhase]);
+  }, [step, imageData, method, divine]);
 
   // Generate hexagram ASCII when result is ready
   useEffect(() => {
