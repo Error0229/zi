@@ -762,6 +762,462 @@
         { "position": 5, "name": "六五", "classical": "君子維有解，吉；有孚於小人。", "modern": "君子唯有解脫，吉；對小人有誠信。" },
         { "position": 6, "name": "上六", "classical": "公用射隼于高墉之上，獲之，無不利。", "modern": "公用射隼於高牆之上，射獲之，無不利。" }
       ]
+    },
+    {
+      "number": 41,
+      "symbol": "䷨",
+      "name": { "chinese": "損", "pinyin": "sǔn", "english": "Decrease" },
+      "slug": "sun",
+      "trigrams": { "upper": "☶", "lower": "☱" },
+      "judgment": {
+        "classical": "損：有孚，元吉，无咎，可貞，利有攸往。曷之用，二簋可用享。",
+        "modern": "損卦象徵減損。有誠信，大吉，無災禍，可守正，利於前往。用什麼？二簋可用於祭享。損下益上。"
+      },
+      "lines": [
+        { "position": 1, "name": "初九", "classical": "巳事遄往，无咎，酌損之。", "modern": "事畢速往，無災禍，酌量減損。" },
+        { "position": 2, "name": "九二", "classical": "利貞，征凶，弗損，益之。", "modern": "利於守正，出征凶，不減損反而增益。" },
+        { "position": 3, "name": "六三", "classical": "三人行，則損一人；一人行，則得其友。", "modern": "三人同行則減損一人；一人獨行則得到朋友。" },
+        { "position": 4, "name": "六四", "classical": "損其疾，使遄有喜，无咎。", "modern": "減損其疾病，使其快速有喜，無災禍。" },
+        { "position": 5, "name": "六五", "classical": "或益之，十朋之龜弗克違，元吉。", "modern": "或有增益，十朋之龜也不能違背，大吉。" },
+        { "position": 6, "name": "上九", "classical": "弗損益之，无咎，貞吉，有攸往，得臣无家。", "modern": "不減損反而增益，無咎，守正吉，有所往，得臣無私。" }
+      ]
+    },
+    {
+      "number": 42,
+      "symbol": "䷩",
+      "name": { "chinese": "益", "pinyin": "yì", "english": "Increase" },
+      "slug": "yi1",
+      "trigrams": { "upper": "☴", "lower": "☳" },
+      "judgment": {
+        "classical": "益：利有攸往，利涉大川。",
+        "modern": "益卦象徵增益。利於有所前往，利於渡過大河。損上益下。"
+      },
+      "lines": [
+        { "position": 1, "name": "初九", "classical": "利用為大作，元吉，无咎。", "modern": "利於做大事，大吉，無災禍。" },
+        { "position": 2, "name": "六二", "classical": "或益之，十朋之龜弗克違，永貞吉。王用享于帝，吉。", "modern": "或有增益，十朋之龜不能違背，永遠守正吉。王用以祭享上帝，吉。" },
+        { "position": 3, "name": "六三", "classical": "益之用凶事，无咎。有孚中行，告公用圭。", "modern": "用凶事來增益，無災禍。有誠信行中道，告公用圭。" },
+        { "position": 4, "name": "六四", "classical": "中行，告公從。利用為依遷國。", "modern": "行中道，告公遵從。利於依附遷國。" },
+        { "position": 5, "name": "九五", "classical": "有孚惠心，勿問元吉。有孚惠我德。", "modern": "有誠信惠心，不必問大吉。有誠信惠及我德。" },
+        { "position": 6, "name": "上九", "classical": "莫益之，或擊之，立心勿恆，凶。", "modern": "無人增益，或有攻擊，立心不恆，凶。" }
+      ]
+    },
+    {
+      "number": 43,
+      "symbol": "䷪",
+      "name": { "chinese": "夬", "pinyin": "guài", "english": "Breakthrough" },
+      "slug": "guai",
+      "trigrams": { "upper": "☱", "lower": "☰" },
+      "judgment": {
+        "classical": "夬：揚于王庭，孚號，有厲，告自邑，不利即戎，利有攸往。",
+        "modern": "夬卦象徵決斷。揚於王庭，誠信號召，有危，告自邑中，不利於用武，利於有所前往。"
+      },
+      "lines": [
+        { "position": 1, "name": "初九", "classical": "壯于前趾，往不勝為咎。", "modern": "強壯於前趾，前往不能勝則有咎。" },
+        { "position": 2, "name": "九二", "classical": "惕號，莫夜有戎，勿恤。", "modern": "驚惕號召，暮夜有敵，勿憂。" },
+        { "position": 3, "name": "九三", "classical": "壯于頄，有凶。君子夬夬，獨行，遇雨，若濡，有慍，无咎。", "modern": "強壯於顴骨，有凶。君子決然獨行，遇雨沾濕，有怨怒，無咎。" },
+        { "position": 4, "name": "九四", "classical": "臀无膚，其行次且。牽羊悔亡，聞言不信。", "modern": "臀部無膚，行走艱難。牽羊悔亡，聽言不信。" },
+        { "position": 5, "name": "九五", "classical": "莧陸夬夬，中行无咎。", "modern": "莧陸決斷，行中道無咎。" },
+        { "position": 6, "name": "上六", "classical": "无號，終有凶。", "modern": "無號召，終有凶。" }
+      ]
+    },
+    {
+      "number": 44,
+      "symbol": "䷫",
+      "name": { "chinese": "姤", "pinyin": "gòu", "english": "Coming to Meet" },
+      "slug": "gou",
+      "trigrams": { "upper": "☰", "lower": "☴" },
+      "judgment": {
+        "classical": "姤：女壯，勿用取女。",
+        "modern": "姤卦象徵相遇。女子強壯，不宜娶此女。一陰遇五陽，陰漸長。"
+      },
+      "lines": [
+        { "position": 1, "name": "初六", "classical": "繫于金柅，貞吉，有攸往，見凶，羸豕孚蹢躅。", "modern": "繫於金車轄，守正吉，有所往見凶，瘦豬躁動不安。" },
+        { "position": 2, "name": "九二", "classical": "包有魚，无咎，不利賓。", "modern": "包中有魚，無災禍，不利於賓客。" },
+        { "position": 3, "name": "九三", "classical": "臀无膚，其行次且，厲，无大咎。", "modern": "臀部無膚，行走艱難，危厲，無大災禍。" },
+        { "position": 4, "name": "九四", "classical": "包无魚，起凶。", "modern": "包中無魚，起而有凶。" },
+        { "position": 5, "name": "九五", "classical": "以杞包瓜，含章，有隕自天。", "modern": "以杞木包瓜，含藏文采，有隕落自天。" },
+        { "position": 6, "name": "上九", "classical": "姤其角，吝，无咎。", "modern": "相遇於角，有憾，無咎。" }
+      ]
+    },
+    {
+      "number": 45,
+      "symbol": "䷬",
+      "name": { "chinese": "萃", "pinyin": "cuì", "english": "Gathering Together" },
+      "slug": "cui",
+      "trigrams": { "upper": "☱", "lower": "☷" },
+      "judgment": {
+        "classical": "萃：亨。王假有廟，利見大人，亨，利貞。用大牲吉，利有攸往。",
+        "modern": "萃卦象徵聚集。亨通。王至於宗廟，利見大人，亨通，利於守正。用大牲吉，利於前往。"
+      },
+      "lines": [
+        { "position": 1, "name": "初六", "classical": "有孚不終，乃亂乃萃，若號一握為笑，勿恤，往无咎。", "modern": "有誠信不能終，乃亂乃聚，若號哭一握即為笑，勿憂，往無咎。" },
+        { "position": 2, "name": "六二", "classical": "引吉，无咎，孚乃利用禴。", "modern": "引導吉，無咎，誠信則利於薄祭。" },
+        { "position": 3, "name": "六三", "classical": "萃如，嗟如，无攸利，往无咎，小吝。", "modern": "聚集而嗟嘆，無所利，往無咎，小有憾。" },
+        { "position": 4, "name": "九四", "classical": "大吉，无咎。", "modern": "大吉，無災禍。" },
+        { "position": 5, "name": "九五", "classical": "萃有位，无咎。匪孚，元永貞，悔亡。", "modern": "聚集有位，無咎。非誠信，元始永遠守正，悔亡。" },
+        { "position": 6, "name": "上六", "classical": "齎咨涕洟，无咎。", "modern": "嗟嘆涕淚，無災禍。" }
+      ]
+    },
+    {
+      "number": 46,
+      "symbol": "䷭",
+      "name": { "chinese": "升", "pinyin": "shēng", "english": "Pushing Upward" },
+      "slug": "sheng",
+      "trigrams": { "upper": "☷", "lower": "☴" },
+      "judgment": {
+        "classical": "升：元亨，用見大人，勿恤，南征吉。",
+        "modern": "升卦象徵上升。元始亨通，用以見大人，勿憂，南征吉祥。"
+      },
+      "lines": [
+        { "position": 1, "name": "初六", "classical": "允升，大吉。", "modern": "誠信上升，大吉。" },
+        { "position": 2, "name": "九二", "classical": "孚乃利用禴，无咎。", "modern": "誠信則利於薄祭，無災禍。" },
+        { "position": 3, "name": "九三", "classical": "升虛邑。", "modern": "上升至空城。" },
+        { "position": 4, "name": "六四", "classical": "王用亨于岐山，吉无咎。", "modern": "王用以祭享於岐山，吉無咎。" },
+        { "position": 5, "name": "六五", "classical": "貞吉，升階。", "modern": "守正吉，升登階梯。" },
+        { "position": 6, "name": "上六", "classical": "冥升，利于不息之貞。", "modern": "昏暗中上升，利於不停息地守正。" }
+      ]
+    },
+    {
+      "number": 47,
+      "symbol": "䷮",
+      "name": { "chinese": "困", "pinyin": "kùn", "english": "Oppression" },
+      "slug": "kun1",
+      "trigrams": { "upper": "☱", "lower": "☵" },
+      "judgment": {
+        "classical": "困：亨，貞，大人吉，无咎，有言不信。",
+        "modern": "困卦象徵困窮。亨通，守正，大人吉，無咎，有言不被信任。"
+      },
+      "lines": [
+        { "position": 1, "name": "初六", "classical": "臀困于株木，入于幽谷，三歲不覿。", "modern": "臀部困於樹樁，入於幽谷，三年不見。" },
+        { "position": 2, "name": "九二", "classical": "困于酒食，朱紱方來，利用享祀，征凶，无咎。", "modern": "困於酒食，朱紱方來，利於享祀，出征凶，無咎。" },
+        { "position": 3, "name": "六三", "classical": "困于石，據于蒺蔾，入于其宮，不見其妻，凶。", "modern": "困於石，據於蒺藜，入其宮室，不見其妻，凶。" },
+        { "position": 4, "name": "九四", "classical": "來徐徐，困于金車，吝，有終。", "modern": "來得緩慢，困於金車，有憾，有終。" },
+        { "position": 5, "name": "九五", "classical": "劓刖，困于赤紱，乃徐有說，利用祭祀。", "modern": "受劓刖之刑，困於赤紱，乃緩緩有脫，利於祭祀。" },
+        { "position": 6, "name": "上六", "classical": "困于葛藟，于臲卼，曰動悔。有悔，征吉。", "modern": "困於葛藤，於危搖，說動則有悔。有悔，征吉。" }
+      ]
+    },
+    {
+      "number": 48,
+      "symbol": "䷯",
+      "name": { "chinese": "井", "pinyin": "jǐng", "english": "The Well" },
+      "slug": "jing",
+      "trigrams": { "upper": "☵", "lower": "☴" },
+      "judgment": {
+        "classical": "井：改邑不改井，无喪无得，往來井井。汔至，亦未繘井，羸其瓶，凶。",
+        "modern": "井卦象徵水井。改邑不改井，無失無得，往來井然有序。將至時，繩未入井，毀其瓶，凶。"
+      },
+      "lines": [
+        { "position": 1, "name": "初六", "classical": "井泥不食，舊井无禽。", "modern": "井底有泥不可食，舊井無禽獸飲。" },
+        { "position": 2, "name": "九二", "classical": "井谷射鮒，瓮敝漏。", "modern": "井谷射小魚，瓶破漏水。" },
+        { "position": 3, "name": "九三", "classical": "井渫不食，為我心惻，可用汲，王明，並受其福。", "modern": "井水清潔不被食用，令我心惻，可用以汲取，王明智，皆受其福。" },
+        { "position": 4, "name": "六四", "classical": "井甃，无咎。", "modern": "井壁修砌，無災禍。" },
+        { "position": 5, "name": "九五", "classical": "井冽，寒泉食。", "modern": "井水清冽，寒泉可食。" },
+        { "position": 6, "name": "上六", "classical": "井收勿幕，有孚元吉。", "modern": "井汲水勿遮蓋，有誠信大吉。" }
+      ]
+    },
+    {
+      "number": 49,
+      "symbol": "䷰",
+      "name": { "chinese": "革", "pinyin": "gé", "english": "Revolution" },
+      "slug": "ge",
+      "trigrams": { "upper": "☱", "lower": "☲" },
+      "judgment": {
+        "classical": "革：巳日乃孚，元亨利貞，悔亡。",
+        "modern": "革卦象徵變革。到了那一天才能取信，元始亨通利於守正，悔恨消失。"
+      },
+      "lines": [
+        { "position": 1, "name": "初九", "classical": "鞏用黃牛之革。", "modern": "鞏固用黃牛皮革。" },
+        { "position": 2, "name": "六二", "classical": "巳日乃革之，征吉，无咎。", "modern": "到了那一天才變革，出征吉，無災禍。" },
+        { "position": 3, "name": "九三", "classical": "征凶，貞厲，革言三就，有孚。", "modern": "出征凶，守正有危，變革之言三次成就，有誠信。" },
+        { "position": 4, "name": "九四", "classical": "悔亡，有孚改命，吉。", "modern": "悔恨消失，有誠信改變天命，吉祥。" },
+        { "position": 5, "name": "九五", "classical": "大人虎變，未占有孚。", "modern": "大人如虎般變革，未占已有誠信。" },
+        { "position": 6, "name": "上六", "classical": "君子豹變，小人革面，征凶，居貞吉。", "modern": "君子如豹變革，小人改變面目，出征凶，安居守正吉。" }
+      ]
+    },
+    {
+      "number": 50,
+      "symbol": "䷱",
+      "name": { "chinese": "鼎", "pinyin": "dǐng", "english": "The Cauldron" },
+      "slug": "ding",
+      "trigrams": { "upper": "☲", "lower": "☴" },
+      "judgment": {
+        "classical": "鼎：元吉，亨。",
+        "modern": "鼎卦象徵鼎器。大吉，亨通。烹飪養賢之器。"
+      },
+      "lines": [
+        { "position": 1, "name": "初六", "classical": "鼎顛趾，利出否，得妾以其子，无咎。", "modern": "鼎足顛倒，利於倒出廢物，得妾及其子，無災禍。" },
+        { "position": 2, "name": "九二", "classical": "鼎有實，我仇有疾，不我能即，吉。", "modern": "鼎中有食物，我的仇人有疾病，不能接近我，吉。" },
+        { "position": 3, "name": "九三", "classical": "鼎耳革，其行塞，雉膏不食，方雨虧悔，終吉。", "modern": "鼎耳變革，其行受阻，雉雞膏脂不食，方雨則悔減，終吉。" },
+        { "position": 4, "name": "九四", "classical": "鼎折足，覆公餗，其形渥，凶。", "modern": "鼎足折斷，傾覆公之食物，形容狼狽，凶。" },
+        { "position": 5, "name": "六五", "classical": "鼎黃耳，金鉉，利貞。", "modern": "鼎有黃耳，金鉉，利於守正。" },
+        { "position": 6, "name": "上九", "classical": "鼎玉鉉，大吉，无不利。", "modern": "鼎有玉鉉，大吉，無不利。" }
+      ]
+    },
+    {
+      "number": 51,
+      "symbol": "䷲",
+      "name": { "chinese": "震", "pinyin": "zhèn", "english": "The Arousing" },
+      "slug": "zhen",
+      "trigrams": { "upper": "☳", "lower": "☳" },
+      "judgment": {
+        "classical": "震：亨。震來虩虩，笑言啞啞。震驚百里，不喪匕鬯。",
+        "modern": "震卦象徵震動。亨通。雷震來而驚恐，後笑言自如。震驚百里，不喪失祭祀之器。"
+      },
+      "lines": [
+        { "position": 1, "name": "初九", "classical": "震來虩虩，後笑言啞啞，吉。", "modern": "雷震來驚恐，後笑言自如，吉。" },
+        { "position": 2, "name": "六二", "classical": "震來厲，億喪貝，躋于九陵，勿逐，七日得。", "modern": "雷震來危厲，意料喪失財貝，登上九陵，勿追逐，七日得回。" },
+        { "position": 3, "name": "六三", "classical": "震蘇蘇，震行无眚。", "modern": "震動蘇醒，震動而行無災害。" },
+        { "position": 4, "name": "九四", "classical": "震遂泥。", "modern": "震動陷於泥中。" },
+        { "position": 5, "name": "六五", "classical": "震往來厲，億无喪，有事。", "modern": "震動往來危厲，意料無喪失，有祭祀之事。" },
+        { "position": 6, "name": "上六", "classical": "震索索，視矍矍，征凶。震不于其躬，于其鄰，无咎。婚媾有言。", "modern": "震動索索發抖，視線驚恐，出征凶。震動不在自身，在鄰人，無咎。婚姻有言語。" }
+      ]
+    },
+    {
+      "number": 52,
+      "symbol": "䷳",
+      "name": { "chinese": "艮", "pinyin": "gèn", "english": "Keeping Still" },
+      "slug": "gen",
+      "trigrams": { "upper": "☶", "lower": "☶" },
+      "judgment": {
+        "classical": "艮其背，不獲其身，行其庭，不見其人，无咎。",
+        "modern": "艮卦象徵止。止於背，不見其身，行於庭，不見其人，無災禍。知止而止。"
+      },
+      "lines": [
+        { "position": 1, "name": "初六", "classical": "艮其趾，无咎，利永貞。", "modern": "止於腳趾，無災禍，利於永遠守正。" },
+        { "position": 2, "name": "六二", "classical": "艮其腓，不拯其隨，其心不快。", "modern": "止於小腿，不能拯救其隨從，其心不快。" },
+        { "position": 3, "name": "九三", "classical": "艮其限，列其夤，厲薰心。", "modern": "止於腰際，裂其脊肉，危厲熏心。" },
+        { "position": 4, "name": "六四", "classical": "艮其身，无咎。", "modern": "止於其身，無災禍。" },
+        { "position": 5, "name": "六五", "classical": "艮其輔，言有序，悔亡。", "modern": "止於面頰，言語有序，悔恨消失。" },
+        { "position": 6, "name": "上九", "classical": "敦艮，吉。", "modern": "敦厚止止，吉祥。" }
+      ]
+    },
+    {
+      "number": 53,
+      "symbol": "䷴",
+      "name": { "chinese": "漸", "pinyin": "jiàn", "english": "Development" },
+      "slug": "jian1",
+      "trigrams": { "upper": "☴", "lower": "☶" },
+      "judgment": {
+        "classical": "漸：女歸吉，利貞。",
+        "modern": "漸卦象徵漸進。女子出嫁吉，利於守正。循序漸進。"
+      },
+      "lines": [
+        { "position": 1, "name": "初六", "classical": "鴻漸于干，小子厲，有言，无咎。", "modern": "鴻雁漸進於岸邊，小子有危，有言語，無災禍。" },
+        { "position": 2, "name": "六二", "classical": "鴻漸于磐，飲食衎衎，吉。", "modern": "鴻雁漸進於磐石，飲食安樂，吉祥。" },
+        { "position": 3, "name": "九三", "classical": "鴻漸于陸，夫征不復，婦孕不育，凶；利禦寇。", "modern": "鴻雁漸進於陸地，丈夫征戰不歸，婦人懷孕不育，凶；利於防禦盜寇。" },
+        { "position": 4, "name": "六四", "classical": "鴻漸于木，或得其桷，无咎。", "modern": "鴻雁漸進於樹木，或得到平坦的枝條，無災禍。" },
+        { "position": 5, "name": "九五", "classical": "鴻漸于陵，婦三歲不孕，終莫之勝，吉。", "modern": "鴻雁漸進於山陵，婦人三年不孕，終無人能勝，吉。" },
+        { "position": 6, "name": "上九", "classical": "鴻漸于陸，其羽可用為儀，吉。", "modern": "鴻雁漸進於陸地，其羽可用為儀式，吉祥。" }
+      ]
+    },
+    {
+      "number": 54,
+      "symbol": "䷵",
+      "name": { "chinese": "歸妹", "pinyin": "guī mèi", "english": "The Marrying Maiden" },
+      "slug": "gui-mei",
+      "trigrams": { "upper": "☳", "lower": "☱" },
+      "judgment": {
+        "classical": "歸妹：征凶，无攸利。",
+        "modern": "歸妹卦象徵少女出嫁。出征凶，無所利。情欲沖動，不循禮法。"
+      },
+      "lines": [
+        { "position": 1, "name": "初九", "classical": "歸妹以娣，跛能履，征吉。", "modern": "嫁妹為媵，跛腳能行，出征吉。" },
+        { "position": 2, "name": "九二", "classical": "眇能視，利幽人之貞。", "modern": "獨眼能看，利於幽隱之人守正。" },
+        { "position": 3, "name": "六三", "classical": "歸妹以須，反歸以娣。", "modern": "嫁妹待嫁，反回為媵。" },
+        { "position": 4, "name": "九四", "classical": "歸妹愆期，遲歸有時。", "modern": "嫁妹愆誤期限，遲嫁有其時機。" },
+        { "position": 5, "name": "六五", "classical": "帝乙歸妹，其君之袂，不如其娣之袂良，月幾望，吉。", "modern": "帝乙嫁妹，其君之袂，不如媵之袂好，月近滿，吉。" },
+        { "position": 6, "name": "上六", "classical": "女承筐无實，士刲羊无血，无攸利。", "modern": "女子捧筐無果實，士人殺羊無血，無所利。" }
+      ]
+    },
+    {
+      "number": 55,
+      "symbol": "䷶",
+      "name": { "chinese": "豐", "pinyin": "fēng", "english": "Abundance" },
+      "slug": "feng",
+      "trigrams": { "upper": "☳", "lower": "☲" },
+      "judgment": {
+        "classical": "豐：亨，王假之，勿憂，宜日中。",
+        "modern": "豐卦象徵豐盛。亨通，王至此，勿憂，宜如日中天。"
+      },
+      "lines": [
+        { "position": 1, "name": "初九", "classical": "遇其配主，雖旬无咎，往有尚。", "modern": "遇到配偶主人，雖十日無咎，往有嘉尚。" },
+        { "position": 2, "name": "六二", "classical": "豐其蔀，日中見斗，往得疑疾，有孚發若，吉。", "modern": "豐盛其蔽覆，日中見北斗，往得疑疾，有誠信發動，吉。" },
+        { "position": 3, "name": "九三", "classical": "豐其沛，日中見沬，折其右肱，无咎。", "modern": "豐盛其旗幟，日中見小星，折其右臂，無災禍。" },
+        { "position": 4, "name": "九四", "classical": "豐其蔀，日中見斗，遇其夷主，吉。", "modern": "豐盛其蔽覆，日中見北斗，遇到同等的主人，吉。" },
+        { "position": 5, "name": "六五", "classical": "來章，有慶譽，吉。", "modern": "來彰顯文采，有慶賀榮譽，吉。" },
+        { "position": 6, "name": "上六", "classical": "豐其屋，蔀其家，闚其戶，闃其无人，三歲不覿，凶。", "modern": "豐盛其屋，蔽覆其家，窺其門戶，寂靜無人，三年不見，凶。" }
+      ]
+    },
+    {
+      "number": 56,
+      "symbol": "䷷",
+      "name": { "chinese": "旅", "pinyin": "lǚ", "english": "The Wanderer" },
+      "slug": "lu1",
+      "trigrams": { "upper": "☲", "lower": "☶" },
+      "judgment": {
+        "classical": "旅：小亨，旅貞吉。",
+        "modern": "旅卦象徵旅行。小有亨通，旅途守正則吉。"
+      },
+      "lines": [
+        { "position": 1, "name": "初六", "classical": "旅瑣瑣，斯其所取災。", "modern": "旅途瑣碎，這是自取災禍。" },
+        { "position": 2, "name": "六二", "classical": "旅即次，懷其資，得童僕貞。", "modern": "旅途住宿，懷其資財，得到童僕守正。" },
+        { "position": 3, "name": "九三", "classical": "旅焚其次，喪其童僕，貞厲。", "modern": "旅途住所被焚燒，喪失童僕，守正有危。" },
+        { "position": 4, "name": "九四", "classical": "旅于處，得其資斧，我心不快。", "modern": "旅途居處，得其資財斧斤，我心不快。" },
+        { "position": 5, "name": "六五", "classical": "射雉一矢亡，終以譽命。", "modern": "射雉一箭落空，終以榮譽授命。" },
+        { "position": 6, "name": "上九", "classical": "鳥焚其巢，旅人先笑後號咷。喪牛于易，凶。", "modern": "鳥焚燒其巢，旅人先笑後哭號。失牛於邊境，凶。" }
+      ]
+    },
+    {
+      "number": 57,
+      "symbol": "䷸",
+      "name": { "chinese": "巽", "pinyin": "xùn", "english": "The Gentle" },
+      "slug": "xun",
+      "trigrams": { "upper": "☴", "lower": "☴" },
+      "judgment": {
+        "classical": "巽：小亨，利攸往，利見大人。",
+        "modern": "巽卦象徵順從。小有亨通，利於有所前往，利於見大人。"
+      },
+      "lines": [
+        { "position": 1, "name": "初六", "classical": "進退，利武人之貞。", "modern": "進退，利於武人守正。" },
+        { "position": 2, "name": "九二", "classical": "巽在床下，用史巫紛若，吉，无咎。", "modern": "順從在床下，用史巫紛然祭祀，吉，無咎。" },
+        { "position": 3, "name": "九三", "classical": "頻巽，吝。", "modern": "頻繁順從，有憾。" },
+        { "position": 4, "name": "六四", "classical": "悔亡，田獲三品。", "modern": "悔恨消失，田獵獲得三種獵物。" },
+        { "position": 5, "name": "九五", "classical": "貞吉悔亡，无不利。无初有終，先庚三日，後庚三日，吉。", "modern": "守正吉悔亡，無不利。無始有終，庚前三日庚後三日，吉。" },
+        { "position": 6, "name": "上九", "classical": "巽在床下，喪其資斧，貞凶。", "modern": "順從在床下，喪失資財斧斤，守正亦凶。" }
+      ]
+    },
+    {
+      "number": 58,
+      "symbol": "䷹",
+      "name": { "chinese": "兌", "pinyin": "duì", "english": "The Joyous" },
+      "slug": "dui",
+      "trigrams": { "upper": "☱", "lower": "☱" },
+      "judgment": {
+        "classical": "兌：亨，利貞。",
+        "modern": "兌卦象徵喜悅。亨通，利於守正。"
+      },
+      "lines": [
+        { "position": 1, "name": "初九", "classical": "和兌，吉。", "modern": "和悅，吉祥。" },
+        { "position": 2, "name": "九二", "classical": "孚兌，吉，悔亡。", "modern": "誠信喜悅，吉，悔恨消失。" },
+        { "position": 3, "name": "六三", "classical": "來兌，凶。", "modern": "來求喜悅，凶。" },
+        { "position": 4, "name": "九四", "classical": "商兌，未寧，介疾有喜。", "modern": "商量喜悅，未能安寧，介於疾病有喜。" },
+        { "position": 5, "name": "九五", "classical": "孚于剝，有厲。", "modern": "誠信於剝，有危厲。" },
+        { "position": 6, "name": "上六", "classical": "引兌。", "modern": "引導喜悅。" }
+      ]
+    },
+    {
+      "number": 59,
+      "symbol": "䷺",
+      "name": { "chinese": "渙", "pinyin": "huàn", "english": "Dispersion" },
+      "slug": "huan",
+      "trigrams": { "upper": "☴", "lower": "☵" },
+      "judgment": {
+        "classical": "渙：亨。王假有廟，利涉大川，利貞。",
+        "modern": "渙卦象徵渙散。亨通。王至於宗廟，利於渡大河，利於守正。"
+      },
+      "lines": [
+        { "position": 1, "name": "初六", "classical": "用拯馬壯，吉。", "modern": "用壯馬相救，吉。" },
+        { "position": 2, "name": "九二", "classical": "渙奔其机，悔亡。", "modern": "渙散奔向其幾案，悔恨消失。" },
+        { "position": 3, "name": "六三", "classical": "渙其躬，无悔。", "modern": "渙散其身，無悔恨。" },
+        { "position": 4, "name": "六四", "classical": "渙其群，元吉。渙有丘，匪夷所思。", "modern": "渙散其群，大吉。渙散有丘陵，非常人所能想。" },
+        { "position": 5, "name": "九五", "classical": "渙汗其大號，渙王居，无咎。", "modern": "渙散如汗發布大號令，渙散王之居所，無災禍。" },
+        { "position": 6, "name": "上九", "classical": "渙其血，去逖出，无咎。", "modern": "渙散其血，遠離而出，無災禍。" }
+      ]
+    },
+    {
+      "number": 60,
+      "symbol": "䷻",
+      "name": { "chinese": "節", "pinyin": "jié", "english": "Limitation" },
+      "slug": "jie1",
+      "trigrams": { "upper": "☵", "lower": "☱" },
+      "judgment": {
+        "classical": "節：亨。苦節，不可貞。",
+        "modern": "節卦象徵節制。亨通。苦澀的節制，不可固守。"
+      },
+      "lines": [
+        { "position": 1, "name": "初九", "classical": "不出戶庭，无咎。", "modern": "不出戶庭，無災禍。" },
+        { "position": 2, "name": "九二", "classical": "不出門庭，凶。", "modern": "不出門庭，凶。失去時機。" },
+        { "position": 3, "name": "六三", "classical": "不節若，則嗟若，无咎。", "modern": "若不節制，則嗟嘆，無災禍。" },
+        { "position": 4, "name": "六四", "classical": "安節，亨。", "modern": "安於節制，亨通。" },
+        { "position": 5, "name": "九五", "classical": "甘節，吉；往有尚。", "modern": "甘於節制，吉；前往有嘉尚。" },
+        { "position": 6, "name": "上六", "classical": "苦節，貞凶，悔亡。", "modern": "苦澀的節制，守正亦凶，悔恨消失。" }
+      ]
+    },
+    {
+      "number": 61,
+      "symbol": "䷼",
+      "name": { "chinese": "中孚", "pinyin": "zhōng fú", "english": "Inner Truth" },
+      "slug": "zhong-fu",
+      "trigrams": { "upper": "☴", "lower": "☱" },
+      "judgment": {
+        "classical": "中孚：豚魚吉，利涉大川，利貞。",
+        "modern": "中孚卦象徵內心誠信。豚魚吉祥，利於渡大河，利於守正。"
+      },
+      "lines": [
+        { "position": 1, "name": "初九", "classical": "虞吉，有它不燕。", "modern": "預謀吉，有其他則不安。" },
+        { "position": 2, "name": "九二", "classical": "鳴鶴在陰，其子和之，我有好爵，吾與爾靡之。", "modern": "鶴鳴於樹蔭，其子相和，我有好酒，與你共飲。" },
+        { "position": 3, "name": "六三", "classical": "得敵，或鼓或罷，或泣或歌。", "modern": "遇到敵人，或擊鼓或停止，或哭泣或歌唱。" },
+        { "position": 4, "name": "六四", "classical": "月幾望，馬匹亡，无咎。", "modern": "月近滿，馬匹亡失，無災禍。" },
+        { "position": 5, "name": "九五", "classical": "有孚攣如，无咎。", "modern": "有誠信相牽連，無災禍。" },
+        { "position": 6, "name": "上九", "classical": "翰音登于天，貞凶。", "modern": "雞鳴聲登於天，守正亦凶。" }
+      ]
+    },
+    {
+      "number": 62,
+      "symbol": "䷽",
+      "name": { "chinese": "小過", "pinyin": "xiǎo guò", "english": "Small Exceeding" },
+      "slug": "xiao-guo",
+      "trigrams": { "upper": "☳", "lower": "☶" },
+      "judgment": {
+        "classical": "小過：亨，利貞，可小事，不可大事。飛鳥遺之音，不宜上，宜下，大吉。",
+        "modern": "小過卦象徵小有過越。亨通，利於守正，可做小事，不可做大事。飛鳥遺留聲音，不宜上升，宜下降，大吉。"
+      },
+      "lines": [
+        { "position": 1, "name": "初六", "classical": "飛鳥以凶。", "modern": "飛鳥以凶。" },
+        { "position": 2, "name": "六二", "classical": "過其祖，遇其妣；不及其君，遇其臣；无咎。", "modern": "過其祖，遇其母；不及其君，遇其臣；無災禍。" },
+        { "position": 3, "name": "九三", "classical": "弗過防之，從或戕之，凶。", "modern": "不過越防備它，從而或傷害它，凶。" },
+        { "position": 4, "name": "九四", "classical": "无咎，弗過遇之。往厲必戒，勿用永貞。", "modern": "無災禍，不過越而遇之。往危厲必戒，勿用永遠守正。" },
+        { "position": 5, "name": "六五", "classical": "密雲不雨，自我西郊，公弋取彼在穴。", "modern": "密雲不雨，自我西郊，公用弋射取穴中之物。" },
+        { "position": 6, "name": "上六", "classical": "弗遇過之，飛鳥離之，凶，是謂災眚。", "modern": "不遇過之，飛鳥離去，凶，這叫災禍。" }
+      ]
+    },
+    {
+      "number": 63,
+      "symbol": "䷾",
+      "name": { "chinese": "既濟", "pinyin": "jì jì", "english": "After Completion" },
+      "slug": "ji-ji",
+      "trigrams": { "upper": "☵", "lower": "☲" },
+      "judgment": {
+        "classical": "既濟：亨，小利貞，初吉終亂。",
+        "modern": "既濟卦象徵已經完成。亨通，小有利於守正，初吉終亂。盛極必衰。"
+      },
+      "lines": [
+        { "position": 1, "name": "初九", "classical": "曳其輪，濡其尾，无咎。", "modern": "拖曳車輪，沾濕尾巴，無災禍。" },
+        { "position": 2, "name": "六二", "classical": "婦喪其茀，勿逐，七日得。", "modern": "婦人喪失其髮飾，勿追逐，七日得回。" },
+        { "position": 3, "name": "九三", "classical": "高宗伐鬼方，三年克之，小人勿用。", "modern": "高宗討伐鬼方，三年克服，小人勿用。" },
+        { "position": 4, "name": "六四", "classical": "繻有衣袽，終日戒。", "modern": "有衣衫破敝，終日警戒。" },
+        { "position": 5, "name": "九五", "classical": "東鄰殺牛，不如西鄰之禴祭，實受其福。", "modern": "東鄰殺牛祭祀，不如西鄰薄祭，實受其福。" },
+        { "position": 6, "name": "上六", "classical": "濡其首，厲。", "modern": "沾濕其頭，危厲。" }
+      ]
+    },
+    {
+      "number": 64,
+      "symbol": "䷿",
+      "name": { "chinese": "未濟", "pinyin": "wèi jì", "english": "Before Completion" },
+      "slug": "wei-ji",
+      "trigrams": { "upper": "☲", "lower": "☵" },
+      "judgment": {
+        "classical": "未濟：亨，小狐汔濟，濡其尾，无攸利。",
+        "modern": "未濟卦象徵尚未完成。亨通，小狐將要渡河，沾濕尾巴，無所利。終而復始，生生不息。"
+      },
+      "lines": [
+        { "position": 1, "name": "初六", "classical": "濡其尾，吝。", "modern": "沾濕尾巴，有憾。" },
+        { "position": 2, "name": "九二", "classical": "曳其輪，貞吉。", "modern": "拖曳車輪，守正吉。" },
+        { "position": 3, "name": "六三", "classical": "未濟，征凶，利涉大川。", "modern": "尚未完成，出征凶，利於渡大河。" },
+        { "position": 4, "name": "九四", "classical": "貞吉，悔亡，震用伐鬼方，三年有賞于大國。", "modern": "守正吉，悔亡，震動討伐鬼方，三年有大國之賞。" },
+        { "position": 5, "name": "六五", "classical": "貞吉，无悔，君子之光，有孚，吉。", "modern": "守正吉，無悔，君子之光，有誠信，吉。" },
+        { "position": 6, "name": "上九", "classical": "有孚于飲酒，无咎，濡其首，有孚失是。", "modern": "有誠信於飲酒，無咎，沾濕其頭，有誠信則失其正道。" }
+      ]
     }
   ]
 }
