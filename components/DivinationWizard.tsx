@@ -9,6 +9,12 @@ import {
   generateChaosFrame,
   generateConvergenceFrame,
   generateHexagramAscii,
+  generateImageAscii,
+  generateBandRevealFrame,
+  generateCoinFlipFrame,
+  generateYarrowFrame,
+  generateMorphFrame,
+  getSortedHexagrams,
 } from '../utils/binaryAscii';
 import {
   OraclePanel,
@@ -27,10 +33,15 @@ import type { DivinationMethod } from '../types/divination';
    ═══════════════════════════════════════════════════════════════════════════ */
 
 type WizardStep = 'upload' | 'divining' | 'result' | 'history';
-type AnimationPhase = 'chaos' | 'converge' | 'reveal' | 'done';
+type AnimationPhase = 'static' | 'method' | 'converge' | 'done';
 
-const ASCII_WIDTH = 50;
-const ASCII_HEIGHT = 25;
+const ASCII_WIDTH = 60;
+const ASCII_HEIGHT = 30;
+
+// Animation timing (ms)
+const STATIC_DURATION = 1500;    // Phase 1: Show original image as ASCII
+const METHOD_DURATION = 2500;    // Phase 2: Method-specific animation
+const CONVERGE_DURATION = 1500;  // Phase 3: Converge to hexagram
 
 export const DivinationWizard: React.FC = () => {
   // Step management
@@ -45,12 +56,15 @@ export const DivinationWizard: React.FC = () => {
   const [method, setMethod] = useState<DivinationMethod>('image');
 
   // Animation state
-  const [animationPhase, setAnimationPhase] = useState<AnimationPhase>('chaos');
+  const [animationPhase, setAnimationPhase] = useState<AnimationPhase>('static');
   const [animationFrame, setAnimationFrame] = useState('');
   const [animationProgress, setAnimationProgress] = useState(0);
+  const [originalAscii, setOriginalAscii] = useState('');
+  const [sortedHexagrams, setSortedHexagrams] = useState<string[]>([]);
 
   // ASCII art for result
   const [hexagramAscii, setHexagramAscii] = useState('');
+  const [binaryAscii, setBinaryAscii] = useState('');
   const [showAscii, setShowAscii] = useState(true);
 
   // History
@@ -67,11 +81,17 @@ export const DivinationWizard: React.FC = () => {
   const animationRef = useRef<number | null>(null);
   const startTimeRef = useRef<number>(0);
   const resultRef = useRef(result);
+  const originalAsciiRef = useRef('');
 
   // Keep resultRef in sync
   useEffect(() => {
     resultRef.current = result;
   }, [result]);
+
+  // Preload sorted hexagrams for image ASCII generation
+  useEffect(() => {
+    getSortedHexagrams().then(setSortedHexagrams);
+  }, []);
 
   const showToast = (message: string) => {
     setToastMessage(message);
@@ -108,47 +128,115 @@ export const DivinationWizard: React.FC = () => {
     reader.readAsDataURL(file);
   }, []);
 
-  // Animation effect
+  // Animation effect - 3-phase flow with method-specific animations
   useEffect(() => {
-    if (step !== 'divining') return;
+    if (step !== 'divining' || !imageData || sortedHexagrams.length === 0) return;
 
     // Only set startTime once when animation begins
     if (startTimeRef.current === 0) {
       startTimeRef.current = Date.now();
-      // Start divination immediately
-      if (imageData) {
-        divine(imageData, method);
-      }
+
+      // Generate original image ASCII art
+      const imgAscii = generateImageAscii(imageData, sortedHexagrams, ASCII_WIDTH, 1.2, false);
+      originalAsciiRef.current = imgAscii;
+      setOriginalAscii(imgAscii);
+      setAnimationFrame(imgAscii);
+
+      // Start divination calculation
+      divine(imageData, method);
     }
 
-    const chaosDuration = 2000;
-    const convergeDuration = 1000;
+    const seed = Date.now();
 
     const animate = () => {
       const elapsed = Date.now() - startTimeRef.current;
       const currentResult = resultRef.current;
+      const currentOriginalAscii = originalAsciiRef.current;
 
-      if (elapsed < chaosDuration) {
-        // Chaos phase
-        setAnimationPhase('chaos');
-        setAnimationFrame(generateChaosFrame(ASCII_WIDTH, ASCII_HEIGHT));
-        setAnimationProgress(elapsed / chaosDuration);
-      } else if (elapsed < chaosDuration + convergeDuration && currentResult) {
-        // Convergence phase - only if result is ready
+      // Phase 1: Static - Show original image as ASCII (1.5s)
+      if (elapsed < STATIC_DURATION) {
+        setAnimationPhase('static');
+        setAnimationProgress(elapsed / STATIC_DURATION);
+        // Keep showing original ASCII
+        setAnimationFrame(currentOriginalAscii);
+      }
+      // Phase 2: Method-specific animation (2.5s)
+      else if (elapsed < STATIC_DURATION + METHOD_DURATION) {
+        setAnimationPhase('method');
+        const methodProgress = (elapsed - STATIC_DURATION) / METHOD_DURATION;
+        setAnimationProgress(methodProgress);
+
+        // Generate method-specific frame
+        switch (method) {
+          case 'image': {
+            // 象數法: Band reveal - 6 horizontal bands lighting up
+            const bandIndex = Math.min(5, Math.floor(methodProgress * 6));
+            setAnimationFrame(generateBandRevealFrame(currentOriginalAscii, bandIndex, '═'));
+            break;
+          }
+          case 'coins': {
+            // 加權銅錢法: Show coin flipping for each line
+            const numResults = Math.floor(methodProgress * 6);
+            const lineResults: ('yang' | 'yin' | null)[] = [];
+            for (let i = 0; i < 6; i++) {
+              if (i < numResults && currentResult) {
+                lineResults.push(currentResult.lines[i].value % 2 === 1 ? 'yang' : 'yin');
+              } else {
+                lineResults.push(null);
+              }
+            }
+            setAnimationFrame(generateCoinFlipFrame(ASCII_WIDTH, ASCII_HEIGHT, lineResults, methodProgress * 10 % 1));
+            break;
+          }
+          case 'yarrow': {
+            // 大衍之數: Slow meditative settling
+            if (currentResult) {
+              const finalAscii = generateBinaryAscii(
+                imageData,
+                currentResult.primaryHexagram.symbol,
+                ASCII_WIDTH,
+                128
+              );
+              setAnimationFrame(generateYarrowFrame(finalAscii, methodProgress, seed));
+            } else {
+              setAnimationFrame(generateChaosFrame(ASCII_WIDTH, ASCII_HEIGHT));
+            }
+            break;
+          }
+          default:
+            setAnimationFrame(generateChaosFrame(ASCII_WIDTH, ASCII_HEIGHT));
+        }
+      }
+      // Phase 3: Convergence to final hexagram (1.5s)
+      else if (elapsed < STATIC_DURATION + METHOD_DURATION + CONVERGE_DURATION && currentResult) {
         setAnimationPhase('converge');
-        const convergeProgress = (elapsed - chaosDuration) / convergeDuration;
+        const convergeProgress = (elapsed - STATIC_DURATION - METHOD_DURATION) / CONVERGE_DURATION;
         setAnimationProgress(convergeProgress);
-        const finalAscii = generateHexagramAscii(currentResult.primaryHexagram.symbol, ASCII_WIDTH);
-        setHexagramAscii(finalAscii);
-        setAnimationFrame(generateConvergenceFrame(finalAscii, convergeProgress, false));
-      } else if (elapsed >= chaosDuration + convergeDuration && currentResult) {
-        // Reveal phase - done
+
+        // Generate binary ASCII and hexagram ASCII
+        const binAscii = generateBinaryAscii(
+          imageData,
+          currentResult.primaryHexagram.symbol,
+          ASCII_WIDTH,
+          128
+        );
+        setBinaryAscii(binAscii);
+
+        const hexAscii = generateHexagramAscii(currentResult.primaryHexagram.symbol, ASCII_WIDTH);
+        setHexagramAscii(hexAscii);
+
+        // Morph from binary to hexagram
+        setAnimationFrame(generateMorphFrame(binAscii, hexAscii, convergeProgress));
+      }
+      // Done
+      else if (elapsed >= STATIC_DURATION + METHOD_DURATION + CONVERGE_DURATION && currentResult) {
         setAnimationPhase('done');
-        startTimeRef.current = 0; // Reset for next time
+        startTimeRef.current = 0;
         setStep('result');
         return;
-      } else if (elapsed >= chaosDuration && !currentResult) {
-        // Still waiting for result, keep showing chaos
+      }
+      // Still waiting for result after method phase
+      else if (!currentResult) {
         setAnimationFrame(generateChaosFrame(ASCII_WIDTH, ASCII_HEIGHT));
       }
 
@@ -162,7 +250,7 @@ export const DivinationWizard: React.FC = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [step, imageData, method, divine]);
+  }, [step, imageData, method, divine, sortedHexagrams]);
 
   // Generate hexagram ASCII when result is ready
   useEffect(() => {
@@ -179,31 +267,47 @@ export const DivinationWizard: React.FC = () => {
       return;
     }
 
-    setAnimationPhase('chaos');
+    if (sortedHexagrams.length === 0) {
+      showToast('載入中，請稍候...');
+      return;
+    }
+
+    setAnimationPhase('static');
     setAnimationProgress(0);
+    setOriginalAscii('');
+    setBinaryAscii('');
+    setHexagramAscii('');
     setIsSaved(false);
+    startTimeRef.current = 0;
+    originalAsciiRef.current = '';
     setStep('divining');
-  }, [imageData]);
+  }, [imageData, sortedHexagrams]);
 
   // Save to history
   const handleSave = useCallback(async () => {
     if (!result || !imageSrc || isSaved) return;
 
     try {
-      await saveResult(result, imageSrc, imageName, undefined, hexagramAscii);
+      await saveResult(result, imageSrc, imageName, binaryAscii, hexagramAscii);
       setIsSaved(true);
       showToast('已存入歷史紀錄');
     } catch {
       showToast('儲存失敗');
     }
-  }, [result, imageSrc, imageName, hexagramAscii, saveResult, isSaved]);
+  }, [result, imageSrc, imageName, binaryAscii, hexagramAscii, saveResult, isSaved]);
 
   // Reset everything
   const handleReset = useCallback(() => {
     setImageSrc(null);
     setImageData(null);
     setImageName('');
+    setOriginalAscii('');
+    setBinaryAscii('');
     setHexagramAscii('');
+    setAnimationPhase('static');
+    setAnimationProgress(0);
+    startTimeRef.current = 0;
+    originalAsciiRef.current = '';
     setStep('upload');
     setIsSaved(false);
     reset();
@@ -238,8 +342,23 @@ export const DivinationWizard: React.FC = () => {
     );
   }
 
+  // Method labels for display
+  const methodLabels: Record<DivinationMethod, string> = {
+    image: '象數法',
+    coins: '加權銅錢',
+    yarrow: '大衍之數',
+  };
+
   // Divining animation
   if (step === 'divining') {
+    // Determine color based on phase
+    const phaseColors: Record<AnimationPhase, string> = {
+      static: 'var(--paper-cream)',
+      method: 'var(--paper-shadow)',
+      converge: 'var(--gold)',
+      done: 'var(--gold)',
+    };
+
     return (
       <div
         style={{
@@ -255,12 +374,14 @@ export const DivinationWizard: React.FC = () => {
         <pre
           style={{
             fontFamily: 'var(--font-hexagram)',
-            fontSize: '10px',
-            lineHeight: 1.2,
-            color: animationPhase === 'chaos' ? 'var(--paper-shadow)' : 'var(--gold)',
+            fontSize: '9px',
+            lineHeight: 1.1,
+            letterSpacing: '-0.5px',
+            color: phaseColors[animationPhase],
             textAlign: 'center',
             transition: 'color 0.5s',
             margin: 0,
+            whiteSpace: 'pre',
           }}
         >
           {animationFrame}
@@ -275,8 +396,30 @@ export const DivinationWizard: React.FC = () => {
             fontFamily: 'var(--font-display)',
           }}
         >
-          {animationPhase === 'chaos' && '混沌...'}
+          {animationPhase === 'static' && '靜觀...'}
+          {animationPhase === 'method' && `${methodLabels[method]}...`}
           {animationPhase === 'converge' && '凝聚...'}
+        </div>
+
+        {/* Progress bar */}
+        <div
+          style={{
+            marginTop: 'var(--space-md)',
+            width: '200px',
+            height: '4px',
+            background: 'var(--ink-light)',
+            borderRadius: '2px',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              height: '100%',
+              width: `${animationProgress * 100}%`,
+              background: phaseColors[animationPhase],
+              transition: 'width 0.1s linear',
+            }}
+          />
         </div>
       </div>
     );
