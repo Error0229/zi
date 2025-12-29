@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AsciiGenerator } from './components/AsciiGenerator';
+import { DivinationWizard } from './components/DivinationWizard';
 import { BaguaPattern } from './components/ui/OracleUI';
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   I-Ching Oracle - Main Application
-   Transform reality into the 64 Hexagrams of the Book of Changes
+   易象 - I-Ching Divination App
+   以圖問卦的易經占卜應用
    ═══════════════════════════════════════════════════════════════════════════ */
 
+type AppMode = 'divination' | 'ascii';
+
 export default function App() {
+  const [mode, setMode] = useState<AppMode>('divination');
+
   return (
     <div
       style={{
@@ -68,40 +73,53 @@ export default function App() {
             textShadow: '0 0 60px var(--gold-glow)',
           }}
         >
-          易經
+          易象
         </h1>
 
-        {/* Subtitle */}
-        <h2
+        {/* Mode Tabs */}
+        <div
           style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(18px, 3vw, 24px)',
-            fontWeight: 400,
-            letterSpacing: '0.15em',
-            color: 'var(--paper-cream)',
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 'var(--space-md)',
             marginBottom: 'var(--space-lg)',
-            textTransform: 'uppercase',
           }}
         >
-          I-Ching Oracle
-        </h2>
-
-        {/* Description */}
-        <p
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '16px',
-            color: 'var(--paper-shadow)',
-            maxWidth: '600px',
-            margin: '0 auto',
-            lineHeight: 1.7,
-            fontStyle: 'italic',
-          }}
-        >
-          Transform reality into the 64 Hexagrams of the Book of Changes
-          <br />
-          through algorithmic density mapping
-        </p>
+          <button
+            onClick={() => setMode('divination')}
+            style={{
+              padding: 'var(--space-sm) var(--space-lg)',
+              background: mode === 'divination' ? 'rgba(201, 169, 98, 0.2)' : 'transparent',
+              border: mode === 'divination' ? '1px solid var(--gold)' : '1px solid var(--ink-light)',
+              borderRadius: '4px',
+              color: mode === 'divination' ? 'var(--gold)' : 'var(--paper-shadow)',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-display)',
+              fontSize: '14px',
+              letterSpacing: '0.05em',
+              transition: 'all var(--transition-fast)',
+            }}
+          >
+            占卜
+          </button>
+          <button
+            onClick={() => setMode('ascii')}
+            style={{
+              padding: 'var(--space-sm) var(--space-lg)',
+              background: mode === 'ascii' ? 'rgba(201, 169, 98, 0.2)' : 'transparent',
+              border: mode === 'ascii' ? '1px solid var(--gold)' : '1px solid var(--ink-light)',
+              borderRadius: '4px',
+              color: mode === 'ascii' ? 'var(--gold)' : 'var(--paper-shadow)',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-display)',
+              fontSize: '14px',
+              letterSpacing: '0.05em',
+              transition: 'all var(--transition-fast)',
+            }}
+          >
+            ASCII 藝術
+          </button>
+        </div>
 
         {/* Decorative line */}
         <div
@@ -109,7 +127,7 @@ export default function App() {
             width: '120px',
             height: '2px',
             background: 'linear-gradient(90deg, transparent, var(--gold), transparent)',
-            margin: 'var(--space-xl) auto 0',
+            margin: '0 auto',
             opacity: 0.5,
           }}
         />
@@ -120,12 +138,12 @@ export default function App() {
         style={{
           flex: 1,
           width: '100%',
-          maxWidth: '1600px',
+          maxWidth: mode === 'divination' ? '900px' : '1600px',
           margin: '0 auto',
           padding: '0 var(--space-lg) var(--space-2xl)',
         }}
       >
-        <AsciiGenerator />
+        {mode === 'divination' ? <DivinationWizard /> : <AsciiGenerator />}
       </main>
 
       {/* Footer */}
@@ -158,7 +176,7 @@ export default function App() {
             letterSpacing: '0.1em',
           }}
         >
-          Pure Algorithmic Processing
+          以圖問卦
         </p>
       </footer>
     </div>
