@@ -69,9 +69,10 @@ export async function parseGif(arrayBuffer: ArrayBuffer): Promise<ParsedGif> {
     // Capture the full composited frame
     const fullFrame = ctx.getImageData(0, 0, width, height);
 
-    // gifuct-js returns delay in centiseconds (1/100s)
-    // delay: 0 should be treated as 10cs (100ms) per browser behavior
-    const delayMs = (frame.delay || 10) * 10;
+    // gifuct-js already converts delay to milliseconds internally
+    // (it does: (frame.gce.delay || 10) * 10)
+    // So frame.delay is already in ms, just use it directly
+    const delayMs = frame.delay || 100; // default to 100ms if 0
 
     resultFrames.push({
       imageData: fullFrame,
