@@ -81,8 +81,7 @@ export const AsciiGenerator: React.FC = () => {
   });
 
   const outputRef = useRef<HTMLPreElement>(null);
-  const animationRef = useRef<number | null>(null);
-  const lastFrameTimeRef = useRef<number>(0);
+  const currentFrameRef = useRef<number>(0);
 
   // Initialize hexagrams sorted by density
   useEffect(() => {
@@ -327,42 +326,28 @@ export const AsciiGenerator: React.FC = () => {
     }
   }, [generateAscii, isGif]);
 
-  // GIF animation loop
-  const animateGif = useCallback(() => {
+  // Keep ref in sync with state
+  useEffect(() => {
+    currentFrameRef.current = currentFrame;
+  }, [currentFrame]);
+
+  // GIF animation using setTimeout for accurate per-frame timing
+  useEffect(() => {
     if (!isPlaying || !gifData || gifFrames.length === 0) return;
 
-    const now = performance.now();
-    const frameDelay = gifData.frames[currentFrame]?.delay || 100;
+    const frameIndex = currentFrameRef.current;
+    const frameDelay = gifData.frames[frameIndex]?.delay || 100;
 
-    if (now - lastFrameTimeRef.current >= frameDelay) {
-      lastFrameTimeRef.current = now;
-      setCurrentFrame((prev) => {
-        const next = (prev + 1) % gifFrames.length;
-        setAsciiArt(gifFrames[next]);
-        return next;
-      });
-    }
+    // Set timeout for the current frame's delay, then advance to next frame
+    const timeoutId = setTimeout(() => {
+      const next = (frameIndex + 1) % gifFrames.length;
+      currentFrameRef.current = next;
+      setCurrentFrame(next);
+      setAsciiArt(gifFrames[next]);
+    }, frameDelay);
 
-    animationRef.current = requestAnimationFrame(animateGif);
+    return () => clearTimeout(timeoutId);
   }, [isPlaying, gifData, gifFrames, currentFrame]);
-
-  // Start/stop animation
-  useEffect(() => {
-    if (isPlaying && gifFrames.length > 0) {
-      lastFrameTimeRef.current = performance.now();
-      animationRef.current = requestAnimationFrame(animateGif);
-    } else {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    }
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [isPlaying, animateGif, gifFrames.length]);
 
   // Playback controls
   const handlePlay = () => {
@@ -378,6 +363,7 @@ export const AsciiGenerator: React.FC = () => {
   const handleStop = () => {
     setIsPlaying(false);
     setCurrentFrame(0);
+    currentFrameRef.current = 0;
     if (gifFrames.length > 0) {
       setAsciiArt(gifFrames[0]);
     }
@@ -387,6 +373,7 @@ export const AsciiGenerator: React.FC = () => {
     if (gifFrames.length === 0) return;
     const prev = (currentFrame - 1 + gifFrames.length) % gifFrames.length;
     setCurrentFrame(prev);
+    currentFrameRef.current = prev;
     setAsciiArt(gifFrames[prev]);
   };
 
@@ -394,6 +381,7 @@ export const AsciiGenerator: React.FC = () => {
     if (gifFrames.length === 0) return;
     const next = (currentFrame + 1) % gifFrames.length;
     setCurrentFrame(next);
+    currentFrameRef.current = next;
     setAsciiArt(gifFrames[next]);
   };
 
